@@ -18,22 +18,22 @@ public class PrimaryController {
 
     Griglia grigliaPrincipale = new Griglia();
 
-    boolean turnoGiocatore1 = true; //se true giocatore1, se false giocatore2
-    
-    private boolean gameOver = false; 
+    boolean turnoGiocatore1 = true; // se true giocatore1, se false giocatore2
 
+    private boolean gameOver = false;
 
     public void segnaPunto(ActionEvent event) {
         if (gameOver) {
-            return;  //se il gioco è finito non si possono cliccare i pulsanti
+            return; // se il gioco è finito non si possono cliccare i pulsanti
         }
-    
+
         Button btn = (Button) event.getSource();
         Integer riga = GridPane.getRowIndex(btn);
         Integer colonna = GridPane.getColumnIndex(btn);
-    
-        //la funzione segnaPunto() restituisce true se la cella è vuota o false se la cella è piena
-        if (grigliaPrincipale.segnaPunto(riga, colonna) == true) { 
+
+        // la funzione segnaPunto() restituisce true se la cella è vuota o false se la
+        // cella è piena
+        if (grigliaPrincipale.segnaPunto(riga, colonna) == true) {
             if (turnoGiocatore1 == true) {
                 btn.setText("O");
                 btn.setDisable(true);
@@ -51,14 +51,14 @@ public class PrimaryController {
                 outPutVincitore.setText("HA VINTO IL GIOCATORE " + vincitore);
                 gameOver = true;
 
-            //la funzione isPieno() restituisce true se è piena e false se ancora mancano delle celle
+                // la funzione isPieno() restituisce true se è piena e false se ancora mancano
+                // delle celle
             } else if (grigliaPrincipale.isPieno() == true) {
                 outPutVincitore.setText("PAREGGIO");
                 gameOver = true;
             }
         }
     }
-    
 
     @FXML
     public void reset() {
@@ -70,11 +70,12 @@ public class PrimaryController {
                 btn.setText(" ");
                 btn.setDisable(false);
                 btn.setStyle(null);
+                btn.setStyle("-fx-border-color: yellow");
             }
         }
         turnoGiocatore1 = true;
         gameOver = false;
         outPutVincitore.setText(" ");
-        
+
     }
 }
